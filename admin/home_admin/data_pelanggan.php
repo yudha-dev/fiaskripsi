@@ -37,66 +37,66 @@
                   </tr>
                 </thead>
                 <tbody>
-                    <!-- Perulangan data Pelanggan -->
-                    <?php include '../../koneksi/koneksi.php';
-                        $no= 1; // Nomor urut
-                        $data = mysqli_query($koneksi,"SELECT * FROM pelanggan ");
-                        while($d = mysqli_fetch_array($data)){
-                    ?>
+                  <!-- Perulangan data Pelanggan -->
+                  <?php include '../../koneksi/koneksi.php';
+                  $no = 1; // Nomor urut
+                  $data = mysqli_query($koneksi, "SELECT * FROM pelanggan ");
+                  while ($d = mysqli_fetch_array($data)) {
+                  ?>
                     <tr>
-                        <td><?= $no++; ?></td>
-                        <td><?= $d['nama_lengkap'] ?></td>
-                        <td><?= $d['alamat'] ?></td>
-                        <td><?= $d['no_hp'] ?></td>
+                      <td><?= $no++; ?></td>
+                      <td><?= $d['nama'] ?></td>
+                      <td><?= $d['alamat'] ?></td>
+                      <td><?= $d['no_hp'] ?></td>
                     </tr>
-                    <?php } ?>
+                  <?php } ?>
                 </tbody>
               </table>
             </div>
           </div>
 
-    <!-- form modal tambah data -->
-    <div id="tambah-modal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
+          <!-- form modal tambah data -->
+          <div id="tambah-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title">Tambah data pelanggan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                </button>
+                  <h5 class="modal-title">Tambah data pelanggan</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
                 <form action="tambah_pelanggan.php" method="post" name="Tambah" role="form">
-                    <div class="modal-body">                
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-address">Nama Lengkap</label>
-                                    <input class="form-control" name="nama" type="text" placeholder="Masukan nama lengkap" required>
-                                </div>
-                            </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-address">Nama Lengkap</label>
+                          <input class="form-control" name="nama" type="text" placeholder="Masukan nama lengkap" required>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-address">Alamat</label>
-                                    <textarea class="form-control" name="alamat" placeholder="Masukan alamat lengkap" rows="3"></textarea>
-                                </div>
-                            </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-address">Alamat</label>
+                          <textarea class="form-control" name="alamat" placeholder="Masukan alamat lengkap" rows="3"></textarea>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-address">Nomor Hp</label>
-                                    <input class="form-control" onkeypress="return hanyaAngka(event)" name="no_hp" placeholder="Masukan nomor hp" type="text" required>
-                                </div>
-                            </div>
-                        </div>                 
+                      </div>
                     </div>
-                    <div class="modal-footer"> 
-                        <input type="submit" class="btn btn-outline-primary" value="Simpan" id="submit">                    
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-address">Nomor Hp</label>
+                          <input class="form-control" onkeypress="return hanyaAngka(event)" name="no_hp" placeholder="Masukan nomor hp" type="text" required>
+                        </div>
+                      </div>
                     </div>
+                  </div>
+                  <div class="modal-footer">
+                    <input type="submit" class="btn btn-outline-primary" value="Simpan" id="submit">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                  </div>
                 </form>
+              </div>
             </div>
-        </div>
-    </div>
+          </div>

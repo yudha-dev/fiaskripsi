@@ -32,7 +32,6 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Kontrak</th>
-                                    <th>Keterangan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -47,7 +46,6 @@
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= $d['nama_kon'] ?></td>
-                                        <td><?= nl2br(str_replace(' ', '  ', ($d['keterangan']))) ?></td>
                                         <td><a href="#" type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?= $d['id_keuntungan_ks']; ?>">Edit</a></td>
                                     </tr>
                                     <!-- form modal edit data -->
@@ -79,7 +77,7 @@
                                                                     <div class="form-group">
                                                                         <label class="form-control-label" for="input-harga">Keterangan Kontrak</label>
                                                                         <textarea id="kontrak" class="form-control" name="keterangan" required>
-                                                                            <?= $kontrak['keterangan'] ?>
+                                                                            <?= $kontrak['ket'] ?>
                                                                         </textarea>
                                                                     </div>
                                                                 </div>
@@ -126,10 +124,8 @@
                                                 <p style="text-align: center;">
                                                     <a href="https://imgbb.com/"><img src="https://i.ibb.co/3f9T4yQ/blue.png" alt="blue"  width="110" height="70" style="opacity:0.5;filter:alpha(opacity=50);" border="0"></a>
                                                 </p>
-
                                                 <h2 style="text-align: center;"><b>PERJANJIAN KERJA BST PROJECT DAN VENDOR (KONTRAK)</b></h2>
-                                                <h6><b>Kudus, </b></h6>
-                                                </textarea>
+                                                <h6><b>Kudus, </b></h6></textarea>
                                             </div>
                                         </div>
                                     </div>

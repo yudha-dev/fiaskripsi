@@ -92,10 +92,10 @@ $data = mysqli_fetch_array($query);
                                 </ul>
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                    <li <?php if (isset($_GET['page']) && $_GET['page'] == 'data_kontrak_vendor') {
+                                    <li <?php if (isset($_GET['page']) && $_GET['page'] == 'kontrak_vendor') {
                                             echo 'class="active"';
                                         } ?>>
-                                        <a href="?page=data_kontrak_vendor" class="nav-link">Data Kontrak Kerja Vendor</a>
+                                        <a href="?page=kontrak_vendor" class="nav-link">Kontrak Vendor</a>
                                     </li>
                                 </ul>
                             </div>
@@ -145,42 +145,17 @@ $data = mysqli_fetch_array($query);
                                 <i class="ni ni-bullet-list-67 text-info"></i>
                                 <span class="nav-link-text">Kategori</span>
                             </a>
-                            <div <?php if (isset($_GET['page']) && $_GET['page'] == 'kategori_catering' || isset($_GET['page']) && $_GET['page'] == 'kategori_makeup' || isset($_GET['page']) && $_GET['page'] == 'kategori_mc' || isset($_GET['page']) && $_GET['page'] == 'kategori_dokumentasi' || isset($_GET['page']) && $_GET['page'] == 'kategori_dekorasi' || isset($_GET['page']) && $_GET['page'] == 'kategori_hiburan') {
+                            <div <?php if (isset($_GET['page']) && $_GET['page'] == 'data_kategori') {
                                         echo 'class="collapse show"';
                                     } else {
                                         echo 'class="collapse"';
                                     } ?> id="navbar-kategori">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                    <li <?php if (isset($_GET['page']) && $_GET['page'] == 'kategori_catering') {
+                                    <li <?php if (isset($_GET['page']) && $_GET['page'] == 'data_kategori') {
                                             echo 'class="active"';
                                         } ?>>
-                                        <a href="?page=kategori_catering" class="nav-link">Kategori Catering</a>
-                                    </li>
-                                    <li <?php if (isset($_GET['page']) && $_GET['page'] == 'kategori_dekorasi') {
-                                            echo 'class="active"';
-                                        } ?>>
-                                        <a href="?page=kategori_dekorasi" class="nav-link">Kategori Dekorasi</a>
-                                    </li>
-                                    <li <?php if (isset($_GET['page']) && $_GET['page'] == 'kategori_dokumentasi') {
-                                            echo 'class="active"';
-                                        } ?>>
-                                        <a href="?page=kategori_dokumentasi" class="nav-link">Kategori Dokumentasi</a>
-                                    </li>
-                                    <li <?php if (isset($_GET['page']) && $_GET['page'] == 'kategori_hiburan') {
-                                            echo 'class="active"';
-                                        } ?>>
-                                        <a href="?page=kategori_hiburan" class="nav-link">Kategori Hiburan</a>
-                                    </li>
-                                    <li <?php if (isset($_GET['page']) && $_GET['page'] == 'kategori_makeup') {
-                                            echo 'class="active"';
-                                        } ?>>
-                                        <a href="?page=kategori_makeup" class="nav-link">Kategori Makeup</a>
-                                    </li>
-                                    <li <?php if (isset($_GET['page']) && $_GET['page'] == 'kategori_mc') {
-                                            echo 'class="active"';
-                                        } ?>>
-                                        <a href="?page=kategori_mc" class="nav-link">Kategori MC</a>
+                                        <a href="?page=data_kategori" class="nav-link">Data Kategori</a>
                                     </li>
                                 </ul>
                             </div>
@@ -206,6 +181,26 @@ $data = mysqli_fetch_array($query);
                             </div>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="#navbar-jasa_acara" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-paket">
+                                <i class="ni ni-archive-2 text-primary"></i>
+                                <span class="nav-link-text">jasa_acara</span>
+                            </a>
+                            <div <?php if (isset($_GET['page']) && $_GET['page'] == 'jasa_acara') {
+                                        echo 'class="collapse show"';
+                                    } else {
+                                        echo 'class="collapse"';
+                                    } ?> id="navbar-jasa_acara">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                    <li <?php if (isset($_GET['page']) && $_GET['page'] == 'jasa_acara') {
+                                            echo 'class="active"';
+                                        } ?>>
+                                        <a href="?page=jasa_acara" class="nav-link">Data Jasa Acara</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#navbar-vendor" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-vendor">
                                 <i class="ni ni-badge text-pink"></i>
                                 <span class="nav-link-text">Vendor</span>
@@ -226,107 +221,24 @@ $data = mysqli_fetch_array($query);
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#navbar-forms" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-forms">
-                                <i class="ni ni-single-copy-04 text-pink"></i>
-                                <span class="nav-link-text">Forms</span>
+                            <a class="nav-link" href="#navbar-ongkir" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-vendor">
+                                <i class="ni ni-delivery-fast text-orange"></i>
+                                <span class="nav-link-text">Ongkos Kirim</span>
                             </a>
-                            <div class="collapse" id="navbar-forms">
+                            <div <?php if (isset($_GET['page']) && $_GET['page'] == 'data_ongkir') {
+                                        echo 'class="collapse show"';
+                                    } else {
+                                        echo 'class="collapse"';
+                                    } ?> id="navbar-ongkir">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="../pages/forms/elements.html" class="nav-link">Elements</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="../pages/forms/components.html" class="nav-link">Components</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="../pages/forms/validation.html" class="nav-link">Validation</a>
+                                    <li <?php if (isset($_GET['page']) && $_GET['page'] == 'data_ongkir') {
+                                            echo 'class="active"';
+                                        } ?>>
+                                        <a href="?page=data_ongkir" class="nav-link">Data Ongkos Kirim</a>
                                     </li>
                                 </ul>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#navbar-tables" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-tables">
-                                <i class="ni ni-align-left-2 text-default"></i>
-                                <span class="nav-link-text">Tables</span>
-                            </a>
-                            <div class="collapse" id="navbar-tables">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="../pages/tables/tables.html" class="nav-link">Tables</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="../pages/tables/sortable.html" class="nav-link">Sortable</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="../pages/tables/datatables.html" class="nav-link">Datatables</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#navbar-maps" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-maps">
-                                <i class="ni ni-map-big text-primary"></i>
-                                <span class="nav-link-text">Maps</span>
-                            </a>
-                            <div class="collapse" id="navbar-maps">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="../pages/maps/google.html" class="nav-link">Google</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="../pages/maps/vector.html" class="nav-link">Vector</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../pages/widgets.html">
-                                <i class="ni ni-archive-2 text-green"></i>
-                                <span class="nav-link-text">Widgets</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../pages/charts.html">
-                                <i class="ni ni-chart-pie-35 text-info"></i>
-                                <span class="nav-link-text">Charts</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../pages/calendar.html">
-                                <i class="ni ni-calendar-grid-58 text-red"></i>
-                                <span class="nav-link-text">Calendar</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- Divider -->
-                    <hr class="my-3">
-                    <!-- Heading -->
-                    <h6 class="navbar-heading p-0 text-muted">Documentation</h6>
-                    <!-- Navigation -->
-                    <ul class="navbar-nav mb-md-3">
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
-                                <i class="ni ni-spaceship"></i>
-                                <span class="nav-link-text">Getting started</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html" target="_blank">
-                                <i class="ni ni-palette"></i>
-                                <span class="nav-link-text">Foundation</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html" target="_blank">
-                                <i class="ni ni-ui-04"></i>
-                                <span class="nav-link-text">Components</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/plugins/charts.html" target="_blank">
-                                <i class="ni ni-chart-pie-35"></i>
-                                <span class="nav-link-text">Plugins</span>
-                            </a>
                         </li>
                     </ul>
                 </div>
@@ -370,115 +282,55 @@ $data = mysqli_fetch_array($query);
                                 <i class="ni ni-zoom-split-in"></i>
                             </a>
                         </li>
+                        <?php
+                        $hitung_notif = mysqli_query($koneksi, "SELECT COUNT(id_pemesanan) AS notif FROM pemesanan WHERE status = 'Pembayaran Diverifikasi'");
+                        $h = mysqli_fetch_array($hitung_notif);
+                        ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <small class="badge badge-sm badge-danger">
+                                    <!-- tampilkan notif dari verifikasi pembayaran  -->
+                                    <?php if ($h['notif'] == NULL) {
+                                        echo '';
+                                    } else {
+                                        echo '' . $h['notif'] . '';
+                                    } ?></small>
                                 <i class="ni ni-bell-55"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right py-0 overflow-hidden">
                                 <!-- Dropdown header -->
                                 <div class="px-3 py-3">
-                                    <h6 class="text-sm text-muted m-0">You have <strong class="text-primary">13</strong> notifications.</h6>
+                                    <h6 class="text-sm text-muted m-0">Anda Memiliki <strong class="text-primary"><?= $h['notif'] ?></strong> Pembayaran Yang Belum Di Proses.</h6>
                                 </div>
                                 <!-- List group -->
-                                <div class="list-group list-group-flush">
-                                    <a href="#!" class="list-group-item list-group-item-action">
-                                        <div class="row align-items-center">
-                                            <div class="col-auto">
-                                                <!-- Avatar -->
-                                                <img alt="Image placeholder" src="../../assets/img/theme/team-1.jpg" class="avatar rounded-circle">
-                                            </div>
-                                            <div class="col ml--2">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div>
-                                                        <h4 class="mb-0 text-sm"><?php echo $data['nama'] ?></h4>
+                                <?php
+                                $data_notif = mysqli_query($koneksi, "SELECT * FROM pemesanan INNER JOIN pelanggan ON pemesanan.id_pelanggan = pelanggan.id_pelanggan INNER JOIN paket_pernikahan ON pemesanan.kode_paket = paket_pernikahan.kode_paket WHERE pemesanan.status = 'Pembayaran Diverifikasi' GROUP BY id_pemesanan");
+                                while ($dn = mysqli_fetch_array($data_notif)) {
+                                    $ongkir = $dn['ongkir'];
+                                    $harga = $dn['total_harga'];
+                                    $total = $ongkir + $harga;
+                                ?>
+                                    <div class="list-group list-group-flush">
+                                        <a href="?page=konfirmasi_pembayaran" class="list-group-item list-group-item-action">
+                                            <div class="row align-items-center">
+                                                <div class="col ml--2">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div>
+                                                            <h4 class="mb-0 text-sm"><?php echo $dn['nama'] ?></h4>
+                                                        </div>
+                                                        <div class="text-right text-muted">
+                                                            <small><?= date('d F Y', strtotime($dn['tanggal'])) ?></small>
+                                                        </div>
                                                     </div>
-                                                    <div class="text-right text-muted">
-                                                        <small>2 hrs ago</small>
-                                                    </div>
+                                                    <p class="text-sm mb-0"><?= $dn['nama_paket'] ?></p>
+                                                    <h5 class="mb-0 text-sm">Rp. <?= number_format($total, 0, ".", ".") ?></h5>
                                                 </div>
-                                                <p class="text-sm mb-0">Let's meet at Starbucks at 11:30. Wdyt?</p>
                                             </div>
-                                        </div>
-                                    </a>
-                                    <a href="#!" class="list-group-item list-group-item-action">
-                                        <div class="row align-items-center">
-                                            <div class="col-auto">
-                                                <!-- Avatar -->
-                                                <img alt="Image placeholder" src="../assets/img/theme/team-2.jpg" class="avatar rounded-circle">
-                                            </div>
-                                            <div class="col ml--2">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div>
-                                                        <h4 class="mb-0 text-sm">John Snow</h4>
-                                                    </div>
-                                                    <div class="text-right text-muted">
-                                                        <small>3 hrs ago</small>
-                                                    </div>
-                                                </div>
-                                                <p class="text-sm mb-0">A new issue has been reported for Argon.</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="#!" class="list-group-item list-group-item-action">
-                                        <div class="row align-items-center">
-                                            <div class="col-auto">
-                                                <!-- Avatar -->
-                                                <img alt="Image placeholder" src="../assets/img/theme/team-3.jpg" class="avatar rounded-circle">
-                                            </div>
-                                            <div class="col ml--2">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div>
-                                                        <h4 class="mb-0 text-sm">John Snow</h4>
-                                                    </div>
-                                                    <div class="text-right text-muted">
-                                                        <small>5 hrs ago</small>
-                                                    </div>
-                                                </div>
-                                                <p class="text-sm mb-0">Your posts have been liked a lot.</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="#!" class="list-group-item list-group-item-action">
-                                        <div class="row align-items-center">
-                                            <div class="col-auto">
-                                                <!-- Avatar -->
-                                                <img alt="Image placeholder" src="../assets/img/theme/team-4.jpg" class="avatar rounded-circle">
-                                            </div>
-                                            <div class="col ml--2">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div>
-                                                        <h4 class="mb-0 text-sm">John Snow</h4>
-                                                    </div>
-                                                    <div class="text-right text-muted">
-                                                        <small>2 hrs ago</small>
-                                                    </div>
-                                                </div>
-                                                <p class="text-sm mb-0">Let's meet at Starbucks at 11:30. Wdyt?</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="#!" class="list-group-item list-group-item-action">
-                                        <div class="row align-items-center">
-                                            <div class="col-auto">
-                                                <!-- Avatar -->
-                                                <img alt="Image placeholder" src="../assets/img/theme/team-5.jpg" class="avatar rounded-circle">
-                                            </div>
-                                            <div class="col ml--2">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div>
-                                                        <h4 class="mb-0 text-sm">John Snow</h4>
-                                                    </div>
-                                                    <div class="text-right text-muted">
-                                                        <small>3 hrs ago</small>
-                                                    </div>
-                                                </div>
-                                                <p class="text-sm mb-0">A new issue has been reported for Argon.</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                                        </a>
+                                    </div>
+                                <?php } ?>
                                 <!-- View all -->
-                                <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
+                                <a href="?page=konfirmasi_pembayaran" class="dropdown-item text-center text-primary font-weight-bold py-3">Konfirmasi Pembayaran</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">

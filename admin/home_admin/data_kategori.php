@@ -41,7 +41,7 @@
                   $no = 1; // Nomor urut
                   $data = mysqli_query($koneksi, "SELECT * FROM kategori ");
                   while ($d = mysqli_fetch_array($data)) {
-                    ?>
+                  ?>
                     <tr>
                       <td><?= $no++; ?></td>
                       <td><?= $d['nama_kategori'] ?></td>
@@ -60,10 +60,10 @@
                           </div>
                           <form action="edit_kategori.php" method="post" role="form">
                             <?php
-                              $id = $d['id_kategori'];
-                              $query = mysqli_query($koneksi, "SELECT * FROM kategori WHERE id_kategori = $id");
-                              while ($kategori = mysqli_fetch_array($query)) {
-                                ?>
+                            $id = $d['id_kategori'];
+                            $query = mysqli_query($koneksi, "SELECT * FROM kategori WHERE id_kategori = $id");
+                            while ($kategori = mysqli_fetch_array($query)) {
+                            ?>
                               <div class="modal-body">
                                 <div class="row">
                                   <div class="col-md-12">
@@ -107,14 +107,8 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-address">Nama Kategori</label>
-                          <select class="form-control" id="exampleFormControlSelect1">
-                            <option value="Catering">Catering</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
+                          <label class="form-control-label" for="input-harga">Nama Kategori</label>
+                          <input class="form-control" name="nama_kategori" type="text" placeholder="Masukan nama kategori" required>
                         </div>
                       </div>
                     </div>

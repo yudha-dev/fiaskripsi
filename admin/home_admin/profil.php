@@ -110,7 +110,7 @@ $d = mysqli_fetch_array($data);
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-address">Foto Profil</label>
-                                        <input type="hidden" name="foto" value="<?php echo $d['foto'];?>">
+                                        <input type="hidden" name="foto" value="<?php echo $d['foto']; ?>">
                                         <input type="file" class="form-control" name="foto" required>
                                     </div>
                                 </div>
@@ -126,28 +126,28 @@ $d = mysqli_fetch_array($data);
         </div>
     </div>
     <?php
-        require "../../koneksi/koneksi.php";
-        if(isset($_POST['submit'])){        //Jika tombol submit di klik
+    require "../../koneksi/koneksi.php";
+    if (isset($_POST['submit'])) {        //Jika tombol submit di klik
         //Kirim data dari form
-        $username = $_POST['username'];     
+        $username = $_POST['username'];
         $nama = $_POST['nama'];
         $alamat = $_POST['alamat'];
         $no_hp = $_POST['no_hp'];
         $foto = $_FILES['foto']['tmp_name'];    //Query update foto
         $foto_name = $_FILES['foto']['name'];
-        $acak = rand(1,99);
-        $tujuan_foto = $acak.$foto_name;
-        $tempat_foto = '../foto_profil/'.$tujuan_foto;
-        if(!$foto==""){
-            $buat_foto=$tujuan_foto;
-            $d = '../foto_profil/'.$foto;
+        $acak = rand(1, 99);
+        $tujuan_foto = $acak . $foto_name;
+        $tempat_foto = '../foto_profil/' . $tujuan_foto;
+        if (!$foto == "") {
+            $buat_foto = $tujuan_foto;
+            $d = '../foto_profil/' . $foto;
             @unlink("$d");
             copy($foto, $tempat_foto);
-        }else{
-            $buat_foto=$foto;
+        } else {
+            $buat_foto = $foto;
         }
         //Query update profil
-        $query = mysqli_query($koneksi, "UPDATE user SET username = '$username', nama = '$nama', alamat = '$alamat', no_hp='$no_hp', foto = '$buat_foto' WHERE id_user = '".$_SESSION['id_user']."'");
-         echo "<script>alert('Profil berhasil di edit');</script>";
-         echo "<script>window.location='index.php?page=profil';</script>";?>
+        $query = mysqli_query($koneksi, "UPDATE user SET username = '$username', nama = '$nama', alamat = '$alamat', no_hp='$no_hp', foto = '$buat_foto' WHERE id_user = '" . $_SESSION['id_user'] . "'");
+        echo "<script>alert('Profil berhasil di edit');</script>";
+        echo "<script>window.location='index.php?page=profil';</script>"; ?>
     <?php } ?>

@@ -6,7 +6,7 @@ include '../koneksi/koneksi.php';
 $username = mysqli_real_escape_string($koneksi, $_POST['username']);
 $password = mysqli_real_escape_string($koneksi, $_POST['password']);
 //query login
-$masuk = mysqli_query($koneksi, "SELECT * FROM vendor WHERE username = '$username' AND password = '$password'");
+$masuk = mysqli_query($koneksi, "SELECT * FROM vendor WHERE username = '$username' AND password = '$password' AND aktif = 1");
 //cek data
 $cek = mysqli_num_rows($masuk);
 //jika data benar

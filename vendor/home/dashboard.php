@@ -6,9 +6,9 @@ if ($cek > 0) {
     $data = mysqli_fetch_assoc($data);
     if ($data == true) {
         //alihkan ke folder vendor
-        echo "<script>window.location='?page=kontrak_kerja';</script>";
+        echo "<script>window.location='?page=aa';</script>";
     }
 } else {
     //jika data salah
-    echo "<script>window.location='index.php?page=bb';</script>";
+    echo "<script>window.location='?page=kontrak_kerja';</script>";
 }

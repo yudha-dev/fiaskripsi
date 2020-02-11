@@ -1,3 +1,6 @@
+    <?php
+    $id = $_SESSION['id_vendor'];
+    ?>
     <!-- Header -->
     <div class="header bg-primary pb-6">
         <div class="container-fluid">
@@ -32,29 +35,31 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Kategori</th>
-                                    <th>Keterangan</th>
+                                    <th>Nama Jasa</th>
                                     <th>Harga</th>
+                                    <th>Keterangan</th>
+                                    <th>Foto</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- Perulangan data Pelanggan -->
                                 <?php include '../../koneksi/koneksi.php';
-                                // Nomor urut
-                                $no = 1;
-                                //Query join jasa, kategori, vendor panggil kondisi dengan where session
-                                $data = mysqli_query($koneksi, "SELECT jasa.id_jasa,jasa.id_kategori,jasa.id_vendor,jasa.keterangan,jasa.harga,kategori.id_kategori,kategori.nama_kategori,vendor.id_vendor FROM jasa INNER JOIN kategori ON jasa.id_kategori = kategori.id_kategori INNER JOIN vendor ON jasa.id_vendor = vendor.id_vendor WHERE vendor.id_vendor = '" . $_SESSION['id_vendor'] . "' ");
-                                //perulanggan data/looping
+                                $no = 1; // Nomor urut
+                                //perulangan join 3 table
+                                $data = mysqli_query($koneksi, "SELECT jasa.id_jasa,jasa.id_kategori,jasa.id_vendor,jasa.nama_jasa,jasa.harga,jasa.keterangan,jasa.foto,kategori.id_kategori,kategori.nama_kategori,vendor.id_vendor FROM jasa INNER JOIN kategori ON jasa.id_kategori = kategori.id_kategori INNER JOIN vendor ON jasa.id_vendor = vendor.id_vendor WHERE vendor.id_vendor = $id ");
                                 while ($d = mysqli_fetch_array($data)) {
                                 ?>
-                                    <!-- Tampilkan ke dalam table -->
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= $d['nama_kategori'] ?></td>
-                                        <td><?= nl2br(htmlspecialchars($d['keterangan'])) ?></td>
-                                        <td>Rp <?= number_format($d['harga'], 0, ".", ".") ?></td>
-                                        <td><a href="#" type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?= $d['id_jasa']; ?>">Edit</a>
-                                            <a href="hapus_jasa.php?id=<?php echo $d['id_jasa'] ?>" class="btn btn-danger btn-xs waves-effect waves-light"> Hapus</a></td>
+                                        <td><?= $d['nama_jasa'] ?></td>
+                                        <td>Rp. <?= number_format($d['harga'], 0, ".", ".") ?></td>
+                                        <td><?= $d['keterangan'] ?></td>
+                                        <td><a href="foto_jasa/<?php echo $d['foto']; ?>" target="blank">
+                                                <img src="foto_jasa/<?php echo $d['foto']; ?>" width="100px" height="100px">
+                                            </a></td>
+                                        <td><a href="#" type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?= $d['id_jasa']; ?>">Edit</a></td>
                                     </tr>
 
                                     <!-- form modal edit data -->
@@ -62,43 +67,72 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">Edit data jasa</h5>
+                                                    <h5 class="modal-title">Edit jasa</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="edit_jasa.php" method="post" role="form">
-                                                    <!-- Query ambil data dari tabel jasa -->
+                                                <form action="edit_jasa.php" method="post" role="form" enctype="multipart/form-data">
                                                     <?php
-                                                    $id = $d['id_jasa'];
-                                                    $query = mysqli_query($koneksi, "SELECT jasa.id_jasa,jasa.id_kategori,jasa.id_vendor,jasa.keterangan,jasa.harga,kategori.id_kategori,kategori.nama_kategori,vendor.id_vendor FROM jasa INNER JOIN kategori ON jasa.id_kategori = kategori.id_kategori INNER JOIN vendor ON jasa.id_vendor = vendor.id_vendor WHERE vendor.id_vendor = '" . $_SESSION['id_vendor'] . "' AND id_jasa = $id");
-                                                    // perulangan dari tabel jasa
-                                                    while ($jasa = mysqli_fetch_array($query)) {
+                                                    $id_jasa = $d['id_jasa'];
+                                                    $q = mysqli_query($koneksi, "SELECT jasa.id_jasa,jasa.id_kategori,jasa.id_vendor,jasa.nama_jasa,jasa.harga,jasa.keterangan,jasa.foto,kategori.id_kategori,kategori.nama_kategori,vendor.id_vendor FROM jasa INNER JOIN kategori ON jasa.id_kategori = kategori.id_kategori INNER JOIN vendor ON jasa.id_vendor = vendor.id_vendor WHERE jasa.id_jasa = $id_jasa");
+                                                    while ($dd = mysqli_fetch_array($q)) {
                                                     ?>
                                                         <div class="modal-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <input type="hidden" name="id_jasa" value="<?php echo $jasa['id_jasa']; ?>">
+                                                                    <input type="hidden" name="id_jasa" value="<?= $dd['id_jasa'] ?>">
                                                                     <div class="form-group">
-                                                                        <label class="form-control-label" for="exampleFormControlSelect1">Kategori</label>
-                                                                        <select name="kategori" class="form-control" id="exampleFormControlSelect1">
-                                                                            <option value="<?= $jasa['id_kategori'] ?>"><?= $jasa['nama_kategori'] ?></option>
+                                                                        <label class="form-control-label" for="input-address">Nama Kategori</label>
+                                                                        <select class="form-control" name="kategori" required>
+                                                                            <option value="<?= $dd['id_kategori'] ?>"><?= $dd['nama_kategori'] ?></option>
                                                                             <?php
-                                                                            $query = mysqli_query($koneksi, "SELECT * FROM kategori");
-                                                                            while ($kategori = mysqli_fetch_array($query)) {
+                                                                            //Masukan data kategori
+                                                                            $data1 = mysqli_query($koneksi, "SELECT * FROM kategori");
+                                                                            //perulangan data
+                                                                            while ($kat = mysqli_fetch_array($data1)) {
                                                                             ?>
-                                                                                <option value="<?= $kategori['id_kategori'] ?>"> <?= $kategori['nama_kategori'] ?></option>
+                                                                                <option value="<?= $kat['id_kategori'] ?>"><?= $kat['nama_kategori'] ?></option>
                                                                             <?php } ?>
                                                                         </select>
                                                                     </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
                                                                     <div class="form-group">
-                                                                        <label class="form-control-label" for="exampleFormControlTextarea1">Keterangan</label>
-                                                                        <textarea class="form-control" name="keterangan" id="exampleFormControlTextarea1" rows="3"><?= htmlspecialchars($jasa['keterangan']) ?></textarea>
+                                                                        <label class="form-control-label" for="input-address">Nama Jasa</label>
+                                                                        <input class="form-control" name="nama_jasa" value="<?= $dd['nama_jasa'] ?>" type="text" required>
                                                                     </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label class="form-control-label" for="input-address">Harga</label>
-                                                                        <input class="form-control" id="rupiah" name="harga" type="text" value="Rp. <?= number_format($jasa['harga'], 0, ".", ".") ?>" required>
-                                                                        <small><b>Harga yang anda masukan akan ditambah ppn 10%</b></small>
+                                                                        <input class="form-control" id="rupiah" name="harga" type="text" value="Rp. <?= number_format($dd['harga'], 0, ".", ".") ?>" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label class="form-control-label" for="input-harga">Deskripsi</label>
+                                                                        <textarea id="keterangan" class="form-control" name="keterangan" required>
+                                                                        <?= $dd['keterangan'] ?>
+                                                                        </textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label class="form-control-label">Ganti Foto</label>
+                                                                        <div class="card" style="width: 7rem;">
+                                                                            <img src="foto_jasa/<?php echo $d['foto']; ?>" width="100px" height="100px">
+                                                                        </div>
+                                                                        <input type="hidden" name="foto_lama" value="<?php echo $dd['foto']; ?>">
+                                                                        <input type="file" class="form-control" name="foto">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -125,35 +159,61 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Tambah data Jasa</h5>
+                                <h5 class="modal-title">Tambah data jasa</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="tambah_jasa.php" method="post" name="Tambah" role="form">
+                            <form action="tambah_jasa.php" method="post" name="Tambah" role="form" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-md-12">
+                                            <input type="hidden" name="id_vendor" value="<?= $id ?>">
                                             <div class="form-group">
-                                                <label class="form-control-label" for="exampleFormControlSelect1">Kategori</label>
-                                                <select name="kategori" class="form-control" id="exampleFormControlSelect1">
-                                                    <option value="">Pilih Kategori</option>
+                                                <label class="form-control-label" for="input-address">Nama Kategori</label>
+                                                <select class="form-control" name="kategori" required>
+                                                    <option value="">--Pilih Kategori--</option>
                                                     <?php
-                                                    $query = mysqli_query($koneksi, "SELECT * FROM kategori");
-                                                    while ($kategori = mysqli_fetch_array($query)) {
+                                                    //Masukan data kategori
+                                                    $data = mysqli_query($koneksi, "SELECT * FROM kategori");
+                                                    //perulangan data
+                                                    while ($kat = mysqli_fetch_array($data)) {
                                                     ?>
-                                                        <option value="<?= $kategori['id_kategori'] ?>"> <?= $kategori['nama_kategori'] ?></option>
+                                                        <option value="<?= $kat['id_kategori'] ?>"><?= $kat['nama_kategori'] ?></option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="form-control-label" for="exampleFormControlTextarea2">Keterangan</label>
-                                                <textarea class="form-control" name="keterangan" id="exampleFormControlTextarea2" rows="3"></textarea>
+                                                <label class="form-control-label" for="input-address">Nama Jasa</label>
+                                                <input class="form-control" name="nama_jasa" placeholder="Nama Jasa Anda" type="text" required>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="input-address">Harga</label>
                                                 <input class="form-control" id="uang" name="harga" type="text" placeholder="Masukan harga jasa" required>
-                                                <small><b>Harga yang anda masukan akan ditambah ppn 10%</b></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-harga">Deskripsi</label>
+                                                <textarea id="keterangan" class="form-control" name="keterangan" required></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-control-label">Foto</label>
+                                                <input class="form-control" name="foto" type="file" required>
                                             </div>
                                         </div>
                                     </div>
@@ -166,3 +226,24 @@
                         </div>
                     </div>
                 </div>
+                <script type='text/javascript'>
+                    tinymce.init({
+                        selector: 'textarea#keterangan',
+                        height: 200,
+                        menubar: false,
+                        force_br_newlines: true,
+                        plugins: [
+                            'advlist autolink lists link image charmap print preview anchor',
+                            'searchreplace visualblocks code fullscreen',
+                            'insertdatetime media table paste code help wordcount'
+                        ],
+                        toolbar: 'undo redo | formatselect | ' +
+                            ' bold italic backcolor | alignleft aligncenter ' +
+                            ' alignright alignjustify | bullist numlist outdent indent |' +
+                            ' removeformat | help',
+                        content_css: [
+                            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                            '//www.tiny.cloud/css/codepen.min.css'
+                        ]
+                    });
+                </script>

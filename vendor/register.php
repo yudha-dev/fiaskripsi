@@ -6,6 +6,7 @@ if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $nama_vendor = ucwords($_POST['nama_vendor']);
+    $nama_pemilik = ucwords($_POST['nama_pemilik']);
     $alamat = ucwords($_POST['alamat']);
     $no_hp = $_POST['no_hp'];
     $cek = mysqli_num_rows(mysqli_query($koneksi, "SELECT * FROM vendor WHERE username = '$username'"));
@@ -14,11 +15,11 @@ if (isset($_POST['submit'])) {
         window.location.href='register.php';
         </script>";
     } else {
-        $masukan = mysqli_query($koneksi, "INSERT INTO vendor (username, password, nama_vendor, alamat,  no_hp, foto, aktif) VALUES ('$username','$password','$nama_vendor','$alamat','$no_hp',NULL, '0')");
+        $masukan = mysqli_query($koneksi, "INSERT INTO vendor (username, password, nama_vendor,nama_pemilik, alamat,  no_hp, foto, aktif) VALUES ('$username','$password','$nama_vendor','$nama_pemilik','$alamat','$no_hp',NULL, '0')");
         echo "<script>alert('Pendaftaran berhasil silahkan menungu verifikasi sms dari kami');
         window.location.href='index.php';
         </script>";
-        ?>
+?>
 <?php }
 } ?>
 <!DOCTYPE html>
@@ -42,30 +43,9 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="../assets/vendor/%40fortawesome/fontawesome-free/css/all.min.css" type="text/css">
     <!-- Argon CSS -->
     <link rel="stylesheet" href="../assets/css/argon.css?v=1.1.0" type="text/css">
-    <!-- Google Tag Manager -->
-    <script>
-        (function(w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
-    </script>
-    <!-- End Google Tag Manager -->
 </head>
 
 <body class="bg-default">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <!-- Navbar -->
     <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
         <div class="container">
@@ -139,6 +119,14 @@ if (isset($_POST['submit'])) {
                                 <div class="form-group">
                                     <div class="input-group input-group-merge input-group-alternative">
                                         <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-shop"></i></span>
+                                        </div>
+                                        <input class="form-control" placeholder="Nama Pemilik Vendor" name="nama_pemilik" type="text" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group input-group-merge input-group-alternative">
+                                        <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="ni ni-collection"></i></span>
                                         </div>
                                         <input class="form-control" placeholder="Alamat" name="alamat" type="text" required>
@@ -156,6 +144,9 @@ if (isset($_POST['submit'])) {
                                     <button type="submit" class="btn btn-primary mt-4" name="submit">Daftar</button>
                                 </div>
                             </form>
+                            <div class="text-center">
+                                <a href="login.php" class="btn btn-danger btn-lg btn-block mt-4">Login</a>
+                            </div>
                         </div>
                     </div>
                 </div>

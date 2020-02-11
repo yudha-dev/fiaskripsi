@@ -14,8 +14,8 @@ $no_hp = $d['no_hp'];
 //api sms gateway
 $fields_string  =   "";
 $fields     =   array(
-    'api_key'       =>  'ed1c17f2',
-    'api_secret'    =>  'V6uC7Jo40qsc9NWS',
+    'api_key'       =>  'c40bce5b',
+    'api_secret'    =>  'eQloOrl8yKy2v4s5',
     'to'            =>  $no_hp,
     'from'          =>  "BST PROJECT",
     'text'          =>  "Selamat pendaftaran anda berhasil di verifikasi silahkan login di BST Vendor dengan USERNAME = $nama dan PASSWORD = $password "
